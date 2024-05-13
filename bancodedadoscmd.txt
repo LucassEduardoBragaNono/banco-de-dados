@@ -13,9 +13,15 @@ create table nome(
 	atributo tipo null unique
 );
 
-DROP TABLE nome( deleta a tabela (n tenho certeza se é esse)
+DROP TABLE nome; deleta a tabela 
 
 CHAR - coloca caracteres sem limitação
 VARCHAR - limite dependendo de quantos a pessoa setou
 fica em branco o resto
 
+modificar
+ALTER TABLE cliente MODIFY cli_obs VARCHAR(255) NOT NULL;
+criar
+ALTER TABLE cliente ADD cli_profissao VARCHAR(255) NULL;
+remover
+ALTER TABLE cliente DROP COLUMN cli_profissao;
