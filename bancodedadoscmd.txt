@@ -1,0 +1,21 @@
+ddl -> 
+
+data definion language
+
+create: criar tabelas
+drop: "dropar tabela"
+alter: alterar estrutura da tabela
+
+
+create table nome(
+	atributos tipo primary key,
+	atributo tipo not null
+	atributo tipo null unique
+);
+
+DROP TABLE nome( deleta a tabela (n tenho certeza se é esse)
+
+CHAR - coloca caracteres sem limitação
+VARCHAR - limite dependendo de quantos a pessoa setou
+fica em branco o resto
+
