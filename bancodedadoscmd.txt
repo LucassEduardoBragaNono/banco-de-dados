@@ -25,3 +25,9 @@ criar
 ALTER TABLE cliente ADD cli_profissao VARCHAR(255) NULL;
 remover
 ALTER TABLE cliente DROP COLUMN cli_profissao;
+
+add chave estrangeira
+ALTER TABLE equipamento ADD FOREIGN KEY (fk_cli_codigo) REFERENCES cliente(cli_codigo);
+outra forma 
+FOREIGN KEY (fk_cli_codigo) references cliente (cli_codigo)
+essa forma vai direto na tabela
