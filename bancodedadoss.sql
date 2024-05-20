@@ -33,8 +33,10 @@ CREATE TABLE marca(
 );
 
 DESCRIBE marca;
-ALTER TABLE equipamento ADD fk_marca_codigo INT(10) NOT NULL;
-ALTER TABLE equipamento ADD FOREIGN KEY(fk_marca_codigo) REFERENCES marca(marca_codigo)
+ALTER TABLE equipamento 
+ADD fk_marca_codigo INT(10) NOT NULL;
+ALTER TABLE equipamento 
+ADD FOREIGN KEY(fk_marca_codigo) REFERENCES marca(marca_codigo);
 
 CREATE TABLE tecnicos(
 	tec_codigo INT(10) PRIMARY KEY,
@@ -42,7 +44,7 @@ CREATE TABLE tecnicos(
 	tec_telefone VARCHAR(255) NOT NULL
 );
 
-DESCRIBE tecnico;
+DESCRIBE tecnicos;
 
 CREATE TABLE itens(
 	item_codigo INT(10) PRIMARY KEY,
@@ -60,3 +62,51 @@ CREATE TABLE servico(
 );
 
 DESCRIBE servico;
+
+CREATE TABLE marca_produto(
+	mpr_codigo INT(10) PRIMARY KEY
+);
+
+CREATE TABLE tecnico(
+	tec_codigo INT(10) PRIMARY KEY
+);
+
+SHOW TABLES;
+
+DESCRIBE cliente;
+
+INSERT
+INTO cliente(cli_codigo, cli_nome, cli_endereco, cli_email, cli_obs)
+VALUES(1,'Marquinhos','Alagoinha','relampagomarquinhos@gmail.com','ele é rápido viu');
+
+INSERT
+INTO cliente(cli_codigo, cli_nome, cli_endereco, cli_email, cli_obs)
+VALUES(2,'zé','RS','zezim@gmail.com','dono da boca');
+
+INSERT
+INTO cliente(cli_codigo, cli_nome, cli_endereco, cli_email, cli_obs)
+VALUES(3,'wesley','serjipe','wesleyducurinthiamelhorquemessi@gmail.com','dribla que só viu');
+
+SELECT *
+FROM cliente;
+
+ALTER TABLE tecnico 
+ADD tec_nome VARCHAR(255) NOT NULL;
+ALTER TABLE tecnico 
+ADD tec_profi VARCHAR(255) NOT NULL;
+
+DESCRIBE tecnicos;
+
+INSERT
+INTO tecnicos(tec_codigo,tec_nome,tec_telefone)
+VALUES(1,'vikin','140120832173');
+INSERT
+INTO tecnicos
+VALUES(2,'killianebibape','827383727238'),
+(3,'neima','81273812738123');
+
+SELECT *
+FROM tecnicos;
+
+
+

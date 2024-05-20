@@ -31,3 +31,18 @@ ALTER TABLE equipamento ADD FOREIGN KEY (fk_cli_codigo) REFERENCES cliente(cli_c
 outra forma 
 FOREIGN KEY (fk_cli_codigo) references cliente (cli_codigo)
 essa forma vai direto na tabela
+ALTER table tal CHANGE tal novonome e o resto
+
+SELECT *
+FROM nome da tabela; mostra os dados da tabela
+
+INSERT
+INTO tecnico(nome das colunas)
+VALUES('nome', 1, '213123131')
+
+INSERT
+INTO tecnicos
+VALUEs(2,'killianebibape','827383727238'),
+(3,'neima','81273812738123');
+
+colocar auto_increment para colocar o numero sozinho na criação ou alterar
