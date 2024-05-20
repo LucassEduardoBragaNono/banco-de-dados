@@ -105,8 +105,16 @@ INTO tecnicos
 VALUES(2,'killianebibape','827383727238'),
 (3,'neima','81273812738123');
 
+INSERT
+INTO tecnicos(tec_nome,tec_telefone)
+VALUES('marquin','4454665777');
+
 SELECT *
 FROM tecnicos;
+
+ALTER TABLE tecnico MODIFY COLUMN tec_codigo INT AUTO_INCREMENT;
+
+SELECT VERSION()
 
 
 
