@@ -73,3 +73,14 @@ https://www.mockaroo.com/ gerador das parada
 
 SELECT COUNT(*)
 FROM x
+
+
+SELECT*
+FROM marca
+WHERE marca_codigo LIKE '%GOOGLE%'
+% delimita pega de qualquer lado esse dado tipo no meio
+
+UPDATE tar
+SET tar_tar='bruzil'
+WHRE TAR__TAR LIKE '%BR%'
+
