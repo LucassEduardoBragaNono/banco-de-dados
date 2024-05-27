@@ -37,3 +37,6 @@ ALTER TABLE usuario DROP COLUMN usu_nivel;
 
 ALTER TABLE livro CHANGE liv_none liv_titulo VARCHAR(255);
 ALTER TABLE livro ADD liv_status TINYINT(1);
+
+
+ALTER TABLE equipamento ADD FOREIGN KEY (fk_cli_codigo) REFERENCES cliente(cli_codigo);
