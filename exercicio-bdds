@@ -1,33 +1,33 @@
 exercicio
 
 CREATE TABLE usuario(
-usu_codigo PRIMARY KEY AUTO INCREMENT,
+usu_codigo INT PRIMARY KEY AUTO INCREMENT,
 usu_senha CHAR(12),
 usu_email VARCHAR(255) UNIQUE,
 usu_nivel INT(2),
-usu_nome VARCHAR(255);
+usu_nome VARCHAR(255)
 );
 
 CREATE TABLE livro(
-liv_codigo PRIMARY KEY AUTO INCREMENT,
+liv_codigo INT PRIMARY KEY AUTO INCREMENT,
 fk_autor VARCHAR(255) FOREIGN KEY, 
 liv_nome VARCHAR(255),
 liv_paginas INT(1000),
-liv_editora VARCHAR(255);
+liv_editora VARCHAR(255)
 );
 
 CREATE TABLE carro(
-car_codigo PRIMARY KEY AUTO INCREMENT,
+car_codigo INT PRIMARY KEY AUTO INCREMENT,
 car_placa CHAR(7) UNIQUE,
 fk_dono VARCHAR(255) FOREIGN KEY,
-car_ano VARCHAR(255),
+car_ano VARCHAR(255)
 );
 
 CREATE TABLE sala(
 sala_codigo INT,
 sala_nome VARCHAR(255) UNIQUE,
 sala_blocoVARCHAR(255),
-fk_disciplina INT(2);
+fk_disciplina INT(2)
 );
 
 ALTER TABLE usuario MODIFY usu_senha CHAR(8);
