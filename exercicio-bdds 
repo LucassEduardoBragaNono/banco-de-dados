@@ -39,4 +39,9 @@ ALTER TABLE livro CHANGE liv_none liv_titulo VARCHAR(255);
 ALTER TABLE livro ADD liv_status TINYINT(1);
 
 
-ALTER TABLE equipamento ADD FOREIGN KEY (fk_cli_codigo) REFERENCES cliente(cli_codigo);
+INSERT
+INTO carro(car_codigo, car_placa, car_ano, fk_dono)
+VALUES(1 , '1234567', '2016', 'Lucas'),
+(2 , '7654321', '2019', 'Marcos');
+
+ALTER TABLE sala ADD FOREIGN_KEY ()();
