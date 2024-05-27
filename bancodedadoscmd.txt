@@ -46,3 +46,28 @@ VALUEs(2,'killianebibape','827383727238'),
 (3,'neima','81273812738123');
 
 colocar auto_increment para colocar o numero sozinho na criação ou alterar
+
+SELECT uma especifica
+FROM nome tabela
+WHERE CLI_ANO='2023'; dado especifico/filtro
+
+
+CHECK (prod_qnt >= 5) colocar na criaçao das tabelasS
+
+check (CHAR_LENGTH(usu_senha)>=8) limita a parada
+
+SHOW INDEX FROM tabela
+ve se tem algo verificando os baguio chave primaria unique
+ALTER TABLE x DROP INDEX x
+
+SELECT * FROM marca;
+UPDATE marca até aqui todos
+SET marca_nome='Samsung';
+WHERE marca_codigo=1; aqui especifico
+
+DELETE
+FROM marca ate aqui todos
+WHERE cli_codigo=2;
+
+https://www.mockaroo.com/ gerador das parada
+
