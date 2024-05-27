@@ -71,3 +71,5 @@ WHERE cli_codigo=2;
 
 https://www.mockaroo.com/ gerador das parada
 
+SELECT COUNT(*)
+FROM x
