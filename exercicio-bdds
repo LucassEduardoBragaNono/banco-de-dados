@@ -1,7 +1,7 @@
 exercicio
 
 CREATE TABLE usuario(
-usu_codigo PRIMARY KEY,
+usu_codigo PRIMARY KEY AUTO INCREMENT,
 usu_senha CHAR(12),
 usu_email VARCHAR(255) UNIQUE,
 usu_nivel INT(2),
@@ -9,7 +9,7 @@ usu_nome VARCHAR(255);
 );
 
 CREATE TABLE livro(
-liv_codigo PRIMARY KEY,
+liv_codigo PRIMARY KEY AUTO INCREMENT,
 fk_autor VARCHAR(255) FOREIGN KEY, 
 liv_nome VARCHAR(255),
 liv_paginas INT(1000),
@@ -17,7 +17,7 @@ liv_editora VARCHAR(255);
 );
 
 CREATE TABLE carro(
-car_codigo PRIMARY KEY,
+car_codigo PRIMARY KEY AUTO INCREMENT,
 car_placa CHAR(7) UNIQUE,
 fk_dono VARCHAR(255) FOREIGN KEY,
 car_ano VARCHAR(255),
