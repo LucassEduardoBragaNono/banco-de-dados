@@ -44,4 +44,11 @@ INTO carro(car_codigo, car_placa, car_ano, fk_dono)
 VALUES(1 , '1234567', '2016', 'Lucas'),
 (2 , '7654321', '2019', 'Marcos');
 
-ALTER TABLE sala ADD FOREIGN_KEY ()();
+ALTER TABLE sala ADD FOREIGN_KEY (fk_disciplina)
+REFERENCES(fk_disciplina);
+ALTER TABLE sala MODIFY fk_disciplina INT(2) AUTO INCREMENT;
+
+INSERT
+INTO sala(sala_codigo, sala_nome, sala_bloco, fk_disciplina)
+VALUES(1 , 'Lucas', '2', 'Matemática'),
+(2 , 'Emilly', '3', 'Biologia');
