@@ -29,3 +29,7 @@ sala_nome VARCHAR(255) UNIQUE,
 sala_blocoVARCHAR(255),
 fk_disciplina INT(2);
 );
+
+ALTER TABLE usuario MODIFY usu_senha CHAR(8);
+ALTER TABLE usuario ADD usu_obs VARCHAR(255) NULL;
+ALTER TABLE usuario DROP COLUMN usu_nivel;
