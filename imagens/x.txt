@@ -1,0 +1,14 @@
+.container{
+  max-width: 100%;
+  margin: 2% 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img{
+  max-width: 40%; /* Para imagens lado a lado, cada uma pode ter no máximo 50% da largura do container */
+  height: auto; /* Para manter a proporção da imagem */
+  float: left; /* Para alinhar as imagens lado a lado */
+  flex: 1;
+}

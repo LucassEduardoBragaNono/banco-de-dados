@@ -8,7 +8,7 @@ CREATE TABLE cliente(
 	cli_obs VARCHAR(255) NULL 
 );
 
-DESCRIBE cliente;
+DESCRI`test`BE cliente;
 
 ALTER TABLE cliente MODIFY cli_obs VARCHAR(255) NOT NULL;
 ALTER TABLE cliente DROP COLUMN cli_endereco;
@@ -115,6 +115,8 @@ FROM tecnicos;
 ALTER TABLE tecnico MODIFY COLUMN tec_codigo INT AUTO_INCREMENT;
 
 SELECT VERSION()
+
+DESCRIBE cliente;
 
 
 
