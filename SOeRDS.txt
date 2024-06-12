@@ -2,3 +2,11 @@ Gateway -> endereço de saída/entrada router
 Roteamento -> ensina a rota de saída/entrada
 (protocolo de roteamento) lucas.nono.net.org -> ipinterno e ipexterno
 DHCP -> fornece end. ip em uma rede
+NAT -> traduz endereços ipválido x nválidos
+			ipquentes x nquentes
+PROXY -> faz cache de páginas ou endereços, filtro de pacotes e endereços
+e também pode fazer o roteamento(gateway) para rotear terá de ter uma placa
+de rede interna e uma externa
+FIREWALL -> ve quem pode entrar na porta e quem nao pode
+PORTAS E SOCKETS -> PORTAS: comunicação entre o cliente e o servidor se dá através
+de protocolos de aplicação padronizados(FTP,HTTP,SMTP,IRC)s 
