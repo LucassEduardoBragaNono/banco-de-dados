@@ -1,0 +1,4 @@
+Gateway -> endereço de saída/entrada router
+Roteamento -> ensina a rota de saída/entrada
+(protocolo de roteamento) lucas.nono.net.org -> ipinterno e ipexterno
+DHCP -> fornece end. ip em uma rede
