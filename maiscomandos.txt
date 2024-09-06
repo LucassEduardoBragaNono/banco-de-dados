@@ -1,43 +1,3 @@
-UPDATE exames SET valor = valor + (valor*0.10)
-WHERE valor < 200;
-
-UPDATE pacientes SET cidade = "Rio de Janeiro",
-bairro = "Ipanema"
-WHERE id_paciente = 1;
-
-SELECT id_medico "Código", nome "Nome"
-FROM medicos
-WHERE id_especialidade = 1
-
-SELECT * 
-FROM tabela1 INNER JOIN tabela2
-ON (tabela1.campo= tabela2.campo)
-
-SELECT id_medico "Código", m.nome "Nome",
-	e.descritivo "Especialidade"
-FROM medicos m INNER JOIN especialidades e
-ON (m.id_especialidade=e.id_especialidade)
-
-DATE_FORMAT(campo datax,"%d/%m/Y")
-
-#listar todas as consultas realizadas pelos médicos codigo nome data_consulta horario_consulta
-
-SELECT m.id_medico "Código", m.nome "Nome",
-DATE_FORMAT(a.data_a,"%d/%m/%Y") "Data_Consulta",
-a.horario_a "Horário_Consulta"
-FROM medicos m INNER JOIN atendimentos a
-ON(m.id_medico=a.id_medico)
-ORDER BY  data_a
-
-#listar listar todas pelos pacientes + sexo + só muié
-SELECT p.id_paciente "Código", p.nome "Nome", p.sexo "Secho",
-DATE_FORMAT(a.data_a,"%d/%m/%Y") "Data_Consulta",
-a.horario_a "Horario_Consulta"
-FROM pacientes p INNER JOIN atendimentos a
-ON(p.id_paciente=a.id_paciente)
-WHERE sexo = "F"
-ORDER BY p.nome
-
 ###FUNCAO AGREGADA - AGRUPAMENTO
 
 SUM(PARAM) - NUMERICO - SOMA VALORES
@@ -93,3 +53,24 @@ FROM exames
 #ex8 achar o exame com o maior e menor valor
 SELECT MAX(valor) "maior", MIN(valor) "menor"
 FROM exames
+
+## ex1 - Contar o numero de alunos do sexo masculino faculdade
+SELECT	COUNT(id_aluno) "Quantidade TOTAL de alunos: "
+FROM alunos
+WHERE sexo = "M"
+
+##ex2 - calcular a receita da faculdade. a receita da faculdade é a soma dos valores de todas as disciplinas que estao sendo cursadas
+SELECT CONCAT("R$",FORMAT(SUM(valor), 2,"de_de")) "Receita"
+FROM disciplinas d INNER JOIN matriculas m
+ON(d.id_disciplina=m.id_disciplina)
+
+##ex3 - calcular a receita de cada curso da faculdade
+SELECT c.id_curso "Código",
+	c.descritivo "Descritivo" ,
+	SUM(d.valor) "Valor"
+FROM disciplinas d INNER JOIN matriculas m
+ON (d.id_disciplina=m.id_disciplina)
+INNER JOIN cursos c ON(c.id_curso=d.id_curso) #sempre agrupar por ID
+GROUP BY c.id_curso
+ORDER BY SUM(d.valor) DESC
+LIMIT 1
