@@ -42,7 +42,7 @@ codigoid nome cursoedscritivo valor_mensalidadeR$000,00
 SELECT d.id_disciplina 'Código',
 a.nome 'Nome',
 c.descritivo 'Curso',
-CONCAT("R$",FORMAT(SUM(valor),2,"de_DE")) 'Valor_mensalidade'
+CONCAT("R$",FORMAT(SUM(d.valor),2,"de_DE")) 'Valor_mensalidade'
 FROM disciplinas d INNER JOIN cursos c
 ON(d.id_curso=c.id_curso)
 INNER JOIN matriculas m
@@ -125,11 +125,15 @@ ORDER BY p.nome
 codigoid disciplinadescritivo cursodescritivo nro_alunos00
 
 SELECT d.id_disciplina 'Código',
-d.descritivo 'Disciplina',
+a.nome 'Nome',
 c.descritivo 'Curso',
-COUNT(m.id_disciplina) 'Nro_alunos'
-FROM matriculas m INNER JOIN disciplinas d 
-ON(m.id_disciplina=d.id_disciplina)
-INNER JOIN cursos c
+CONCAT("R$",FORMAT(SUM(d.valor),2,"de_DE")) 'Valor_mensalidade',
+COUNT(m.id_aluno) 'N_disciplina'
+FROM disciplinas d INNER JOIN cursos c
 ON(d.id_curso=c.id_curso)
-GROUP BY d.id_disciplina
+INNER JOIN matriculas m
+ON(m.id_disciplina=d.id_disciplina)
+INNER JOIN alunos a
+ON(a.id_aluno=m.id_aluno)
+GROUP BY a.id_aluno
+ORDER BY a.nome
