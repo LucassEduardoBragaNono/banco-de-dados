@@ -36,6 +36,21 @@ FROM exames
 SELECT SUM(valor), COUNT(valor), SUM(valor)/COUNT(valor)
 FROM exames ##verificar
 
+#ex4 - calcular a mensalidade que cada aluno paga pelas disciplinas cursadas classificar a listagem pelo nome do aluno
+codigoid nome cursoedscritivo valor_mensalidadeR$000,00
+
+SELECT d.id_disciplina 'Código',
+a.nome 'Nome',
+c.descritivo 'Curso',
+CONCAT("R$",FORMAT(SUM(valor),2,"de_DE")) 'Valor_mensalidade'
+FROM disciplinas d INNER JOIN cursos c
+ON(d.id_curso=c.id_curso)
+INNER JOIN matriculas m
+ON(m.id_disciplina=d.id_disciplina)
+INNER JOIN alunos a
+ON(a.id_aluno=m.id_aluno)
+GROUP BY a.id_aluno
+ORDER BY a.nome #######melhorar a logica/relacionamentos, alunos cursos idcurso- disciplina iddisciplina- matricula idaluno
 ##ex5 - calcular a receita da clinica dos atendimentos considerando o valor da consulta padrao 250 reais
 
 SELECT CONCAT("R$", FORMAT(COUNT(id_atendimento) * 250, 2)) "Receita da clínica"
@@ -74,3 +89,47 @@ INNER JOIN cursos c ON(c.id_curso=d.id_curso) #sempre agrupar por ID
 GROUP BY c.id_curso
 ORDER BY SUM(d.valor) DESC
 LIMIT 1
+
+sempre agrupar por id
+HAVING 'Nmero_alunos' >= 6  tem q ser variavel  sem espaço acento 
+HAVING COUNT(a.id_curso) >= 6 sem ser variavel	com "      "
+tipo where sem ser where, faz depois q a tabela ta pronta
+
+#ex1 - Calcular o numero de alunos do sexo feminino em cada curso. classificar a listagem em ordem alfabetica
+codigoid cursodescritivo nmeroalunos00
+SELECT COUNT(a.id_curso) 'Nmero_alunos',
+c.descritivo 'Curso',
+c.id_curso 'Código'
+FROM alunos a INNER JOIN cursos c
+ON(a.id_curso=c.id_curso)
+WHERE sexo = 'F'
+GROUP BY c.id_curso 
+ORDER BY c.descritivo
+
+#ex2 - calcular o numero de disciplinas ministradas por cada professor classificar a listagem e ordem alfabetica pelo nome do professor
+codigoid professornome cursodescritivo nro_disciplina00
+
+SELECT p.id_professor 'Código',
+p.nome 'Professor',
+c.descritivo 'Curso',
+COUNT(d.id_professor) 'Nro_disciplina'
+FROM professores p INNER JOIN  cursos c
+ON(p.id_curso=c.id_curso)
+INNER JOIN disciplinas d 
+ON(d.id_professor=p.id_professor)
+GROUP BY p.id_professor
+ORDER BY p.nome
+
+
+#ex3 - calcular o numero de alunos matriculos em cada disciplina 
+codigoid disciplinadescritivo cursodescritivo nro_alunos00
+
+SELECT d.id_disciplina 'Código',
+d.descritivo 'Disciplina',
+c.descritivo 'Curso',
+COUNT(m.id_disciplina) 'Nro_alunos'
+FROM matriculas m INNER JOIN disciplinas d 
+ON(m.id_disciplina=d.id_disciplina)
+INNER JOIN cursos c
+ON(d.id_curso=c.id_curso)
+GROUP BY d.id_disciplina
