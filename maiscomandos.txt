@@ -137,3 +137,112 @@ INNER JOIN alunos a
 ON(a.id_aluno=m.id_aluno)
 GROUP BY a.id_aluno
 ORDER BY a.nome
+
+
+VIEW - 
+OR REPLACE não precisa ficar dropando a view tda hora que atualiza-la
+a view leva so os dados q vc precisa, se nao leva a tabela inteira
+
+CREATE OR REPLACE VIEW vw_imagem_funcionario AS
+SELECT f.id_funcionario 'codigo',
+	f.nome 'Nome',
+	e.descritivo 'Unidade',
+	c.descritivo 'Cargo'
+FROM funcionarios f INNER JOIN empresas e
+ON (f.id_empresa=e.id_empresa)
+INNER JOIN departamentos d
+ON (f.id_departamento=d.id_departamento)
+INNER JOIN cargos c ON
+(f.id_cargo=c.id_cargo)
+ORDER BY f.nome
+
+SELECT * FROM vw_imagem_funcionario
+
+##reutilizacao
+
+SELECT vw.nome, vw.codigo, vw.cargo, f.salario
+FROM vw_imagem_funcionario vw INNER JOIN
+funcionarios f ON (vw.codigo=f.id_funcionario)
+
+alguns exercicios traduzidos para view(da faculdade_wds)
+
+#Exer1 - Calcular o numero de alunos do sexo feminino
+#em cada curso. Classificar a listagem em ordem 
+#alfabetica.
+Código       Curso       Nro_alunos
+  id       descritivo       00
+  
+CREATE OR REPLACE VIEW vw_listagem_curso AS
+SELECT c.id_curso "Codigo", c.descritivo "Curso",
+COUNT(a.id_curso) "Nro_alunos_cursos"
+FROM cursos c INNER JOIN alunos a
+ON (c.id_curso=a.id_curso)
+WHERE a.sexo = "F"
+GROUP BY c.id_curso
+HAVING COUNT(a.id_curso) >= 6 
+ORDER BY c.descritivo
+ 
+  
+  
+#Exer2 - Calcular o numero de disciplinas ministradas
+#por cada professor. Classificar a listagem em ordem 
+#albetica pelo nome do professor.
+Código  Professor    Curso        Nro_disciplinas
+  id      nome     descritivo           00
+ 
+CREATE OR REPLACE VIEW vw_disc_min_pro AS
+SELECT p.id_professor "Codigo", p.nome "Nome",
+c.descritivo "Curso", 
+COUNT(d.id_professor) "Nro_disciplinas"
+FROM professores p INNER JOIN cursos c
+ON (p.id_curso=c.id_curso) INNER JOIN
+disciplinas d ON (d.id_professor=p.id_professor)
+GROUP BY p.id_professor
+HAVING nro_disciplinas >= 5
+ORDER BY p.nome
+
+SELECT * FROM vw_disc_min_pro
+
+  
+  
+#Exer3 - Calcular o numero de alunos matriculados 
+#em cada disciplina.
+#Classificar a listagem pelo id da disciplina.
+Código  Disciplina    Curso       Nro_Alunos
+  id    descritivo    descritivo       00 
+
+CREATE OR REPLACE VIEW vw_alu_ma_disc AS
+SELECT d.id_disciplina "Codigo",
+       d.descritivo "Disciplina",
+       c.descritivo "Curso",
+       COUNT(m.id_disciplina) "Nro_Alunos"
+FROM disciplinas d INNER JOIN cursos c 
+ON (d.id_curso=c.id_curso) INNER JOIN 
+matriculas m ON (m.id_disciplina=d.id_disciplina)
+GROUP BY d.id_disciplina
+ORDER BY d.id_disciplina
+
+SELECT * FROM vw_alu_ma_disc
+
+
+#Exer4 - Calcular a mensalidade que cada aluno 
+#paga pelas disciplinas cursadas.
+#Classificar a listagem pelo nome do 
+#aluno.
+Código     Nome     Curso     Valor_Mensalidade
+  id              descritivo      R$ 0.000,00
+ 
+CREATE OR REPLACE VIEW vw_mes_alu_cur AS
+SELECT a.id_aluno "Codigo", a.nome,
+       c.descritivo "Curso",
+SUM(d.valor) "Valor_Mensalidade", ##se for usar o format e o concat ter em mente que nao dará para utilizar esses numeros para contas ou dxa em ordem tipo crescente, eles se tornaram string
+COUNT(m.id_aluno) "Nro_Disciplinas"
+FROM alunos a INNER JOIN cursos c
+ON (a.id_curso=c.id_curso) INNER JOIN
+matriculas m ON (a.id_aluno=m.id_aluno)
+INNER JOIN disciplinas d 
+ON (d.id_disciplina=m.id_disciplina)
+GROUP BY a.id_aluno
+ORDER BY a.nome
+
+SELECT * FROM vw_mes_alu_cur
